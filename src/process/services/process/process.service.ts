@@ -20,8 +20,8 @@ export class ProcessService {
     // console.log('onMessage Init with policy:', this.defaultPolicy);
 
     dgramSocket.on('message', async (msg, rinfo) => {
-      console.log({ msg });
       const packet = radius.decode({ packet: msg, secret: 'cisco21' });
+      console.log({ packet });
       const { attributes, raw_attributes } = packet;
       const msgData = attributes['EAP-Message'];
       const msgAuthenticator = attributes['Message-Authenticator'];
@@ -34,7 +34,6 @@ export class ProcessService {
         code: 'Access-Accept',
         secret: 'cisco21',
       });
-      console.log({ response: response.toString() });
 
       dgramSocket.send(response, 0, response.length, rinfo.port, rinfo.address);
     });
