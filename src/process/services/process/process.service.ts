@@ -35,6 +35,8 @@ export class ProcessService {
         secret: 'cisco21',
       });
 
+      console.log('--->> Response sent');
+
       dgramSocket.send(response, 0, response.length, rinfo.port, rinfo.address);
     });
   }
