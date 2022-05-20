@@ -21,9 +21,11 @@ export class ProcessService {
 
     dgramSocket.on('message', async (msg, rinfo) => {
       const packet = radius.decode({ packet: msg, secret: 'cisco21' });
-      console.log('=====================================================');
+      console.log(
+        '=================================logged as {packet} ====================',
+      );
       console.log({ packet });
-      console.log('----------------------------------------------c');
+      console.log('-------------------------- end --------------------c');
       const { attributes, raw_attributes } = packet;
       const msgData = attributes['EAP-Message'];
       const msgAuthenticator = attributes['Message-Authenticator'];
